@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Details</title>
+  </head>
+  <body>
+    <h1><%= event.title %></h1>
+    <p><strong>Description:</strong> <%= event.description %></p>
+    <p><strong>Date:</strong> <%= event.date %></p>
+    <p><strong>Location:</strong> <%= event.location %></p>
+    <p><strong>Start Time:</strong> <%= event.startTime %></p>
+    <p><strong>End Time:</strong> <%= event.endTime %></p>
+    <p><strong>Host:</strong> <%= event.hostId.email %></p>
+    <h2>Attendees</h2>
+    <ul>
+      <% event.attendees.forEach(attendee => { %>
+      <li><%= attendee.name %></li>
+      <% }) %>
+    </ul>
+    <h2>Tickets</h2>
+    <ul>
+      <% event.tickets.forEach(ticket => { %>
+      <li>
+        <strong><%= ticket.type %></strong> - $<%= ticket.price %> <% if
+        (ticket.soldOut) { %>
+        <span style="color: red">(Sold Out)</span>
+        <% } else { %>
+        <span style="color: green">(Available)</span>
+        <% } %>
+      </li>
+      <% }) %>
+    </ul>
+  </body>
+</html>

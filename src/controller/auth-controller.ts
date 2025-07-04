@@ -20,7 +20,7 @@ export const loginHandler = asyncHandler(async (req, res) => {
     });
   }
 
-  const user = await User.findOne({ email }).lean().exec();
+  const user = await User.findOne({ email }).exec();
   if (!user) {
     return res.status(400).render("login", {
       title: "Login page",

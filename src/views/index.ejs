@@ -5,10 +5,11 @@
   </head>
   <body>
     <% if (user) { %>
-    <p>Welcome back, <%= user.username %></p>
+    <h1>Welcome back, <%= user.username %></h1>
     <a href="/auth/logout">Logout</a>
     <% } else { %>
     <ul>
+      <h1>You are logged out</h1>
       <li><a href="/auth/login">Login</a></li>
       <li><a href="/auth/register">Register</a></li>
     </ul>

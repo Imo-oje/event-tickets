@@ -13,6 +13,8 @@ import { PORT } from "./constants";
 import path from "path";
 import indexRouter from "./router/index-router";
 import cookieParser from "cookie-parser";
+import eventRouter from "./router/event-router";
+import authenticate from "./middleware/authenticate";
 
 const app = express();
 
@@ -25,6 +27,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/", indexRouter);
 app.use("/auth", authRouter);
+app.use("/event", authenticate, eventRouter);
 
 app.listen(PORT, "localhost", async () => {
   await connectDB();
