@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+  </head>
+  <body>
+    <% if (user) { %>
+    <p>Welcome back, <%= user.username %></p>
+    <a href="/auth/logout">Logout</a>
+    <% } else { %>
+    <ul>
+      <li><a href="/auth/login">Login</a></li>
+      <li><a href="/auth/register">Register</a></li>
+    </ul>
+    <% } %>
+  </body>
+</html>
