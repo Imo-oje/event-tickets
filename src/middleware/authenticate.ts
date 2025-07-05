@@ -2,7 +2,6 @@ import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import { JWT_SECRET } from "../constants";
 import User from "../model/user-model";
-import { ObjectId } from "mongoose";
 
 const authenticate = async (
   req: Request,
@@ -22,12 +21,13 @@ const authenticate = async (
       const user = await User.findOne({ email: (decoded as any).email });
       if (user) {
         res.locals.user = user;
-        req.userId = user._id as ObjectId; // Ensure userId is set on the request
+        req.userId = user.userId; // Ensure userId is set on the request
         next();
       } else {
         return res.redirect("/auth/login");
       }
     } else {
+      console.log("Token error");
       return res.redirect("/auth/login");
     }
   } catch (err) {

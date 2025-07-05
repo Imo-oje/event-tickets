@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('partials/head', { title: "Event List" }) %>
+  <body>
+    <h1>Active Events</h1>
+    <ul>
+      <% events.forEach(event => { %>
+      <li>
+        <a class="underline text-sky-600" href="/event/<%= event.eventId %>"
+          ><%= event.title %></a
+        >
+      </li>
+      <p>
+        Hosted by:
+        <a href="/profile/<%= event.hostId %>"><%= event.host.username %></a>
+      </p>
+      <% }) %>
+    </ul>
+  </body>
+</html>

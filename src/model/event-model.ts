@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 
 export interface EventDocument extends mongoose.Document {
   eventId: string;
-  hostId: mongoose.Schema.Types.ObjectId; // Reference to the host user
+  hostId: string; // Reference to the host user
   title: string;
   description?: string;
   date: Date;
@@ -30,7 +30,7 @@ const eventSchema = new mongoose.Schema<EventDocument>(
     isActive: { type: Boolean, default: true },
     link: { type: String, required: false },
     hostId: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: String,
       ref: "User",
       required: true,
     },
@@ -41,6 +41,16 @@ const eventSchema = new mongoose.Schema<EventDocument>(
     timestamps: true,
   }
 );
+
+eventSchema.virtual("host", {
+  ref: "User",
+  localField: "hostId",
+  foreignField: "userId",
+  justOne: true,
+});
+
+eventSchema.set("toObject", { virtuals: true });
+eventSchema.set("toJSON", { virtuals: true });
 
 const Event = mongoose.model<EventDocument>("Event", eventSchema);
 

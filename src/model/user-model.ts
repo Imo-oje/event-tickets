@@ -10,6 +10,8 @@ export interface UserDocument extends mongoose.Document {
   comparePassword: (password: string) => Promise<boolean>;
 }
 
+// TODO: Add more fields like firstName, lastName, events etc. as needed
+
 const userSchema = new mongoose.Schema<UserDocument>({
   userId: { type: String, required: true, unique: true, default: uuidv4 },
   email: { type: String, required: true, unique: true },

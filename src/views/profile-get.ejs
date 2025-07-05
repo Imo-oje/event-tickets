@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= user.username %>'s Profile</title>
+  </head>
+  <body>
+    <h1><%= user.username %>'s Profile</h1>
+    <p>Email: <%= user.email %></p>
+    <h2>Hosted Events</h2>
+    <% if (user.events) { %>
+    <ul>
+      <% user.events.forEach(event => { %>
+      <li>
+        <a href="/event/<%= event._id %>"><%= event.title %></a>
+      </li>
+      <% }) %>
+    </ul>
+    <% } else { %>
+    <p>No hosted events found.</p>
+    <% } %>
+  </body>
+</html>

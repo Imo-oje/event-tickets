@@ -15,6 +15,7 @@ import indexRouter from "./router/index-router";
 import cookieParser from "cookie-parser";
 import eventRouter from "./router/event-router";
 import authenticate from "./middleware/authenticate";
+import profileRouter from "./router/profile-router";
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/", indexRouter);
 app.use("/auth", authRouter);
 app.use("/event", authenticate, eventRouter);
+app.use("/profile", authenticate, profileRouter);
 
 app.listen(PORT, "localhost", async () => {
   await connectDB();

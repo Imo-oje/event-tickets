@@ -12,7 +12,7 @@
     <p><strong>Location:</strong> <%= event.location %></p>
     <p><strong>Start Time:</strong> <%= event.startTime %></p>
     <p><strong>End Time:</strong> <%= event.endTime %></p>
-    <p><strong>Host:</strong> <%= event.hostId.email %></p>
+    <p><strong>Host:</strong> <%= event.host.username %></p>
     <h2>Attendees</h2>
     <ul>
       <% event.attendees.forEach(attendee => { %>

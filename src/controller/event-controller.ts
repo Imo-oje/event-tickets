@@ -37,7 +37,7 @@ export const getEvent = asyncHandler(async (req, res, next) => {
   const { eventId } = req.params;
 
   const event = await Event.findOne({ eventId })
-    .populate("hostId")
+    .populate("host")
     .populate("attendees")
     .exec();
 
@@ -50,4 +50,14 @@ export const getEvent = asyncHandler(async (req, res, next) => {
   }
 
   return res.status(200).render("event-get", { event });
+});
+
+export const getAllEvents = asyncHandler(async (req, res, next) => {
+  const events = await Event.find({ isActive: true }).populate("host").exec();
+
+  if (!events || events.length === 0) {
+    return res.status(404).send("No active events found");
+  }
+
+  return res.status(200).render("events-list", { events });
 });

@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-  </head>
+  <%- include('partials/head',{title:"Home"}) %>
   <body>
     <% if (user) { %>
     <h1>Welcome back, <%= user.username %></h1>
-    <a href="/auth/logout">Logout</a>
+    <p>Your email: <%= user.email %></p>
+    <div class="flex gap-4 w-fit">
+      <a class="text-sky-600 underline" href="/event/all">View Events</a>
+      <a class="text-sky-600 underline" href="/profile">View Profile</a>
+      <a class="text-sky-600 underline" href="/event">Create Event</a>
+    </div>
+    <a class="text-red-600 underline" href="/auth/logout">Logout</a>
     <% } else { %>
     <ul>
       <h1>You are logged out</h1>
-      <li><a href="/auth/login">Login</a></li>
-      <li><a href="/auth/register">Register</a></li>
+      <li><a class="text-sky-600 underline" href="/auth/login">Login</a></li>
+      <li>
+        <a class="text-sky-600 underline" href="/auth/register">Register</a>
+      </li>
     </ul>
-    <% } %>
+    <% } %> <%- include('partials/footer') %>
   </body>
 </html>
